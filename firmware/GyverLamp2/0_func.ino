@@ -1,7 +1,14 @@
+#include "globals.h"
+
 void sendUDP(char *data) {
+  //DEBUG("Sending: ");
+  //DEBUGLN(data);
   Udp.beginPacket(broadIP, portNum + cfg.group);
-  // Udp.write((uint8_t)data);
-  Udp.write((const uint8_t *)data,strlen(data));
+
+  for (int i=0; i< sizeof(data); i++) {
+    Udp.write( ((byte *)&data)[i] );
+  }
+
   Udp.endPacket();
 }
 void sendUDP(byte cmd, int data1 = 0, int data2 = 0, int data3 = 0) {
