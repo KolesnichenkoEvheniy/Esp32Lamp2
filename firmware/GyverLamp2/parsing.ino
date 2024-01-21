@@ -1,3 +1,6 @@
+#include "globals.h"
+#include <ESP32httpUpdate.h>
+
 char buf[UDP_TX_PACKET_MAX_SIZE + 1];
 void parsing() {
   if (Udp.parsePacket()) {
@@ -88,7 +91,7 @@ void parsing() {
               DEBUGLN(OTA);
               delay(100);
               WiFiClient client;
-              ESPhttpUpdate.update(client, OTA);
+              ESPhttpUpdate.update(OTA);
             } break;
           case 13:                                        // выключить через
             if (data[3] == 0) turnoffTmr.stop();
@@ -112,7 +115,8 @@ void parsing() {
           cfg.width = 1;
         }
         if (cfg.length * cfg.width > MAX_LEDS) cfg.width = MAX_LEDS / cfg.length;
-        ntp.setTimeOffset((cfg.GMT - 13) * 3600);
+        // ntp.setTimeOffset((cfg.GMT - 13) * 3600);
+        ntp.setGMT(cfg.GMT - 13);
         FastLED.setMaxPowerInVoltsAndMilliamps(STRIP_VOLT, cfg.maxCur * 100);
         if (cfg.adcMode == GL_ADC_BRI) switchToPhot();
         else if (cfg.adcMode == GL_ADC_MIC) switchToMic();

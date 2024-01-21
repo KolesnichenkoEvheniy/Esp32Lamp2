@@ -1,5 +1,6 @@
 #pragma once
 #include <Arduino.h>
+#include "globals.h"
 #include "FastFilter.h"
 
 class VolAnalyzer {

@@ -1,3 +1,5 @@
+#include "globals.h"
+
 void checkButton() {
 #if (USE_BTN == 1)
   DEBUGLN(cfg.WiFimode ? "local mode" : "AP mode");

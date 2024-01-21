@@ -17,6 +17,27 @@
 #define GL_SLAVE 0
 #define GL_MASTER 1
 #define MAX_PRESETS 40      // макс количество режимов
+#define UDP_TX_PACKET_MAX_SIZE 8192
+
+// ---------- Настройки -----------
+#define GL_KEY "GL"         // ключ сети
+
+// ------------ Кнопка -------------
+#define BTN_PIN 4           // пин кнопки GPIO4 (D2 на wemos/node), 0 для схемы с ESP-01
+#define USE_BTN 1           // 1 использовать кнопку, 0 нет
+
+// ------------- АЦП --------------
+#define USE_ADC 1           // можно выпилить АЦП
+#define USE_CLAP 1          // два хлопка в ладоши вкл выкл лампу
+#define MIC_VCC 12          // питание микрофона GPIO12 (D6 на wemos/node)
+#define PHOT_VCC 14         // питание фоторезистора GPIO14 (D5 на wemos/node)
+
+// ------------ Лента -------------
+#define STRIP_PIN 2         // пин ленты GPIO2 (D4 на wemos/node), GPIO5 (D1) для module
+#define MAX_LEDS 300        // макс. светодиодов
+#define STRIP_CHIP WS2812   // чип ленты
+#define STRIP_COLOR GRB     // порядок цветов в ленте
+#define STRIP_VOLT 5        // напряжение ленты, V
 
 // ------------------- МАКРО --------------------
 #ifdef DEBUG_SERIAL_LAMP

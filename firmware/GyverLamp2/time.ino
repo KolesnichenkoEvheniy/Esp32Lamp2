@@ -1,10 +1,15 @@
+#include "globals.h"
+
 void setupTime() {
-  ntp.setUpdateInterval(NTP_UPD_PRD * 60000ul / 2); // ставим меньше, так как апдейт вручную
-  ntp.setTimeOffset((cfg.GMT - 13) * 3600l);
-  ntp.setPoolServerName(NTPserver);
+  ntp.setPeriod(NTP_UPD_PRD * 60000ul / 2);
+  // ntp.setUpdateInterval(NTP_UPD_PRD * 60000ul / 2); // ставим меньше, так как апдейт вручную
+  ntp.setGMT(cfg.GMT - 13);
+  // ntp.setTimeOffset((cfg.GMT - 13) * 3600l);
+  // ntp.setPoolServerName(NTPserver);
+  ntp.setHost(NTPserver);
   if (cfg.WiFimode && !connTmr.running()) {     // если успешно подключились к WiFi
     ntp.begin();
-    if (ntp.update()) gotNTP = true;
+    if (ntp.updateNow()) gotNTP = true;
   }
 }
 
@@ -13,13 +18,13 @@ void timeTicker() {
   static timerMillis tmr(30, true);
   if (tmr.isReady()) {
     if (cfg.WiFimode && WiFi.status() == WL_CONNECTED && !connTmr.running()) {  // если вайфай подключен и это не попытка переподключиться
-      now.sec = ntp.getSeconds();
-      now.min = ntp.getMinutes();
-      now.hour = ntp.getHours();
-      now.day = ntp.getDay();   // вс 0, сб 6
-      now.weekMs = now.getWeekS() * 1000ul + ntp.getMillis();
-      now.setMs(ntp.getMillis());      
-      if (now.sec == 0 && now.min % NTP_UPD_PRD == 0 && ntp.update()) gotNTP = true;      
+      now.sec = ntp.second();
+      now.min = ntp.minute();
+      now.hour = ntp.hour();
+      now.day = ntp.day();   // вс 0, сб 6
+      now.weekMs = now.getWeekS() * 1000ul + ntp.ms();
+      now.setMs(ntp.ms());      
+      if (now.sec == 0 && now.min % NTP_UPD_PRD == 0 && ntp.updateNow()) gotNTP = true;      
     } else {          // если вайфай не подключен
       now.tick();     // тикаем своим счётчиком
     }

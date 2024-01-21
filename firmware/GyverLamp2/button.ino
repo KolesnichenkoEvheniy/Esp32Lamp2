@@ -1,3 +1,4 @@
+#include "globals.h"
 #define CLICKS_TOUT 800
 
 void button() {

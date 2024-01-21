@@ -1,3 +1,5 @@
+#include "globals.h"
+
 // ============= Огонь 2020 ===============
 // (c) SottNick
 //сильно по мотивам https://pastebin.com/RG0QGzfK

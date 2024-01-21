@@ -1,7 +1,4 @@
-#pragma once
-#include <Arduino.h>
-
-class TimeESP {
+class Time {
   public:
     byte sec = 0;
     byte min = 0;

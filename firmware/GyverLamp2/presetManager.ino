@@ -1,3 +1,5 @@
+#include "globals.h"
+
 void presetRotation(bool force) {
   if (holdPresTmr.runningStop()) return;
   if (cfg.rotation && (now.newMin() || force)) {   // если автосмена и новая минута
