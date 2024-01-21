@@ -134,7 +134,7 @@ void parsing() {
           }
           //if (!cfg.rotation) setPreset(data[cfg.presetAmount * PRES_SIZE + 3] - 1);
           byte dataStart = cfg.presetAmount * PRES_SIZE + 3;
-          setPreset(data[dataStart] - 1);
+          setPreset(data[dataStart] ); // -1
           setTime(data[dataStart + 1], data[dataStart + 2], data[dataStart + 3], data[dataStart + 4]);
 
           EE_updatePreset();

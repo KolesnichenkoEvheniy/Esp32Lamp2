@@ -17,25 +17,25 @@
 #define GL_SLAVE 0
 #define GL_MASTER 1
 #define MAX_PRESETS 40      // макс количество режимов
-#define UDP_TX_PACKET_MAX_SIZE 8192
+#define UDP_TX_PACKET_MAX_SIZE 18192
 
 // ---------- Настройки -----------
 #define GL_KEY "GL"         // ключ сети
 
 // ------------ Кнопка -------------
 #define BTN_PIN 4           // пин кнопки GPIO4 (D2 на wemos/node), 0 для схемы с ESP-01
-#define USE_BTN 1           // 1 использовать кнопку, 0 нет
+#define USE_BTN 0           // 1 использовать кнопку, 0 нет
 
 // ------------- АЦП --------------
 #define USE_ADC 1           // можно выпилить АЦП
-#define USE_CLAP 1          // два хлопка в ладоши вкл выкл лампу
+#define USE_CLAP 0          // два хлопка в ладоши вкл выкл лампу
 #define MIC_VCC 12          // питание микрофона GPIO12 (D6 на wemos/node)
 #define PHOT_VCC 14         // питание фоторезистора GPIO14 (D5 на wemos/node)
 
 // ------------ Лента -------------
 #define STRIP_PIN 2         // пин ленты GPIO2 (D4 на wemos/node), GPIO5 (D1) для module
-#define MAX_LEDS 300        // макс. светодиодов
-#define STRIP_CHIP WS2812   // чип ленты
+#define MAX_LEDS 256        // макс. светодиодов
+#define STRIP_CHIP WS2812B   // чип ленты
 #define STRIP_COLOR GRB     // порядок цветов в ленте
 #define STRIP_VOLT 5        // напряжение ленты, V
 
@@ -102,7 +102,7 @@ struct Config {
   int16_t length = 16;    // длина ленты
   int16_t width = 16;     // ширина матрицы
 
-  byte GMT = 16;          // часовой пояс +13
+  byte GMT = 2;          // часовой пояс +13
   uint32_t cityID = 1;    // city ID
   bool mqtt = 0;          // mqtt
   char mqttID[32];        //
@@ -113,7 +113,7 @@ struct Config {
 
   byte state = 1;         // состояние 0 выкл, 1 вкл
   byte group = 1;         // группа девайса (1-10)
-  byte role = 0;          // 0 slave, 1 master
+  byte role = 1;          // 0 slave, 1 master
   byte WiFimode = 0;      // 0 AP, 1 local
   byte presetAmount = 1;  // количество режимов
   byte manualOff = 0;     // выключали вручную?

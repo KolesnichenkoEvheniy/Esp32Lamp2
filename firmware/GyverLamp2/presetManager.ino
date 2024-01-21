@@ -32,6 +32,7 @@ void setPreset(byte pres) {
   holdPresTmr.restart();
   DEBUG("Preset set to ");
   DEBUGLN(cfg.curPreset);
+  DEBUGLN(pres);
   //}
 }
 
