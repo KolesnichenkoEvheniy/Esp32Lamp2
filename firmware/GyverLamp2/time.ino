@@ -36,10 +36,10 @@ void timeTicker() {
 
       if (now.sec == 0) {                       // новая минута
         if (now.min % 5 == 0) sendTimeToLocals();  // отправляем время каждые 5 мин
-        if (gotNTP || gotTime) {                // если знаем точное время
-          checkWorkTime();                      // проверяем расписание
-          checkDawn();                          // и рассвет
-        }
+        // if (gotNTP || gotTime) {                // если знаем точное время
+        //   checkWorkTime();                      // проверяем расписание
+        //   checkDawn();                          // и рассвет
+        // }
       }
     }
   }
